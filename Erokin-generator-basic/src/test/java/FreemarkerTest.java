@@ -15,30 +15,20 @@ import java.util.List;
 public class FreemarkerTest {
     @Test
     public void test() throws IOException, TemplateException {
-        // Create your Configuration instance, and specify if up to what FreeMarker
-// version (here 2.3.22) do you want to apply the fixes that are not 100%
-// backward-compatible. See the Configuration JavaDoc for details.
+        //------------FreeMarker----------------
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
         cfg.setNumberFormat("0.######");  // now it will print 1000000
-
-// where cfg is a freemarker.template.Configuration object
-// Specify the source where the template files come from. Here I set a
-// plain directory for it, but non-file-system sources are possible too:
+        // 文件所在的目录
         cfg.setDirectoryForTemplateLoading(new File("src/main/resources/template"));
-
-// Set the preferred charset template files are stored in. UTF-8 is
-// a good choice in most applications:
+        //字符集设置
         cfg.setDefaultEncoding("UTF-8");
-
-// Sets how errors will appear.
-// During web page *development* TemplateExceptionHandler.HTML_DEBUG_HANDLER is better.
+        //错误信息输出设置
         cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+        //获取模板
         Template template = cfg.getTemplate("test.txt.ftl");
-        //指定输出流流向的文件
-
+        //指定输出流流向的文件,创建流管道
         Writer out = new FileWriter("test.txt");
-
-
+        //创建填充数据模型
         HashMap<String, Object> dataModel = new HashMap<>();
 
         dataModel.put("name", "World");
@@ -50,11 +40,10 @@ public class FreemarkerTest {
         list.add("2da");
         list.add("3");
         dataModel.put("menuItems",list);
-
+        //模板+填充数据=>输出文件
         template.process(dataModel, out);
-
+        //关闭流
         out.close();
-
     }
 
 }
