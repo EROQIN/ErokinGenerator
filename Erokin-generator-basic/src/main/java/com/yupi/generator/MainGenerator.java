@@ -11,7 +11,7 @@ public class MainGenerator {
         //如何提高现有代码的易用性：
         //1.根据模板名称在新生成的文件夹中寻找应替换的文件
         //静态文件生成
-        String outPutPath = System.getProperty("user.dir");
+        String outPutPath = System.getProperty("user.dir");  //获取项目的根路径
         String inputPath = outPutPath + File.separator + "Erokin-generator-basic" + File.separator +"src"+File.separator+"main"+File.separator+"resources"+File.separator+"template"+File.separator+"acm-template";
         copyFilesByRecursive(inputPath, outPutPath);
 
