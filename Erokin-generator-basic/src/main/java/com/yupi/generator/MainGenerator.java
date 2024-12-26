@@ -1,6 +1,7 @@
 package com.yupi.generator;
 
 import com.yupi.model.MainTemplateConfig;
+import picocli.CommandLine;
 
 import java.io.File;
 
@@ -14,11 +15,6 @@ public class MainGenerator {
         String outPutPath = System.getProperty("user.dir");  //获取项目的根路径
         String inputPath = outPutPath + File.separator + "Erokin-generator-basic" + File.separator +"src"+File.separator+"main"+File.separator+"resources"+File.separator+"template"+File.separator+"acm-template";
         copyFilesByRecursive(inputPath, outPutPath);
-
-        //动态文件生成
-        //获取模板文件路径：
-        //String dynamicInputPath = inputPath;
-        //String dynamicOutputPath = "acm-template\\src\\com\\yupi\\acm\\MainTemplate.java";
         //创建数据填充模型
         MainTemplateConfig dataModel = new MainTemplateConfig();
         dataModel.setAuthor("Kinzuki");

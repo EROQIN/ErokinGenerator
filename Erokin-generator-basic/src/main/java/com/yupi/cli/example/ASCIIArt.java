@@ -1,6 +1,5 @@
 package com.yupi.cli.example;
 
-import cn.hutool.db.sql.SqlBuilder;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
