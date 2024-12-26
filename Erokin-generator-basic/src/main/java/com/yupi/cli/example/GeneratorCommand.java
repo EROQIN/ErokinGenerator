@@ -1,5 +1,6 @@
-package com.yupi.generator;
+package com.yupi.cli.example;
 
+import com.yupi.generator.DynamicGenerator;
 import com.yupi.model.MainTemplateConfig;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
