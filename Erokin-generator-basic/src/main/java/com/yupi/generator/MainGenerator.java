@@ -18,7 +18,7 @@ public class MainGenerator {
         //创建数据填充模型
         MainTemplateConfig dataModel = new MainTemplateConfig();
         dataModel.setAuthor("Kinzuki");
-        dataModel.setOutputText("输出的结果为：");
+        dataModel.setOutputText("输出的结");
         dataModel.setLoop(true);
         //获取inputPath的最后一级目录名
         String templateName = inputPath.substring(inputPath.lastIndexOf(File.separator) + 1);

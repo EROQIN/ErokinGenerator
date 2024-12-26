@@ -12,8 +12,8 @@ public class ConfigCommand implements Runnable {
     public void run() {
         Field[] fields = ReflectUtil.getFields(MainTemplateConfig.class);
         for (Field field : fields) {
-            System.out.println(field.getType());
-            System.out.println(field.getName());
+            System.out.println("字段类型："+field.getType());
+            System.out.println("字段名称："+field.getName());
         }
     }
 }

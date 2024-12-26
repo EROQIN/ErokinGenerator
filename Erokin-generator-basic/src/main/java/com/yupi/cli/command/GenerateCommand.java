@@ -5,11 +5,12 @@ import com.yupi.generator.DynamicGenerator;
 import com.yupi.generator.MainGenerator;
 import com.yupi.generator.StaticGenerator;
 import com.yupi.model.MainTemplateConfig;
+import lombok.Data;
 import picocli.CommandLine;
 
 import java.io.File;
 import java.util.concurrent.Callable;
-
+@Data
 @CommandLine.Command(name = "generate", mixinStandardHelpOptions = true)
 public class GenerateCommand implements Callable<Integer> {
 
@@ -34,7 +35,8 @@ public class GenerateCommand implements Callable<Integer> {
         MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
         BeanUtil.copyProperties(this, mainTemplateConfig);
         String projectPath = System.getProperty("user.dir");
-        StaticGenerator.copyFilesByRecursive(projectPath+File.separator + "Erokin-generator-demo-projects" + File.separator + "acm-template", projectPath+File.separator+"output");
+        StaticGenerator.copyFilesByRecursive(projectPath+File.separator + "Erokin-generator-basic" +File.separator+"src"+File.separator+"main"+File.separator+"resources"+File.separator+"template"+File.separator + "acm-template", projectPath+File.separator+"output");
+
         MainGenerator.ReplaceTemplateFile(projectPath+File.separator+"output"+File.separator+"acm-template", mainTemplateConfig);
         return 0;
     }

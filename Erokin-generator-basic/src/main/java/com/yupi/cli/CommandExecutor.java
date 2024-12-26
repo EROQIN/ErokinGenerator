@@ -2,6 +2,7 @@ package com.yupi.cli;
 
 import com.yupi.cli.command.ConfigCommand;
 import com.yupi.cli.command.GenerateCommand;
+import com.yupi.cli.command.ListCommand;
 import picocli.CommandLine;
 
 @CommandLine.Command(name = "CommandExecutor", mixinStandardHelpOptions = true)
@@ -10,7 +11,9 @@ public class CommandExecutor implements Runnable {
     {
         commandLine = new CommandLine(this)
                 .addSubcommand(new ConfigCommand())
-                .addSubcommand(new GenerateCommand());
+                .addSubcommand(new GenerateCommand())
+                .addSubcommand(new ListCommand())
+        ;
     }
 
     @Override
