@@ -1,0 +1,9 @@
+name: World
+author: Kinzuki
+age: 180000
+
+1
+2da
+3
+
+Hello World, this is Kinzuki's text.

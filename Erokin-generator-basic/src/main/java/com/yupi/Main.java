@@ -1,11 +1,13 @@
 package com.yupi;
 
-import cn.hutool.core.io.FileUtil;
-
-import java.util.Scanner;
+import com.yupi.cli.CommandExecutor;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-        }
+        args = new String[] {"generate","-l","-a","-o"};
+        CommandExecutor commandExecutor = new CommandExecutor();
+        commandExecutor.doExecute(args);
+
+
+    }
 }

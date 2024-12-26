@@ -79,4 +79,3 @@ public class GeneratorCommand implements Runnable {
         System.exit(exitCode);
     }
 }
-
