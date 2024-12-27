@@ -1,11 +1,10 @@
-package com.yupi.cli.command;
+package com.erokin.maker.cli.command;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.yupi.generator.DynamicGenerator;
-import com.yupi.generator.MainGenerator;
-import com.yupi.generator.StaticGenerator;
-import com.yupi.model.MainTemplateConfig;
-import com.yupi.utils.PathUtil;
+import com.erokin.maker.generator.file.FileGenerator;
+import com.erokin.maker.generator.file.StaticGenerator;
+import com.erokin.maker.model.DataModel;
+import com.erokin.maker.utils.PathUtil;
 import lombok.Data;
 import picocli.CommandLine;
 
@@ -33,14 +32,14 @@ public class GenerateCommand implements Callable<Integer> {
 
     @Override
     public Integer call() throws Exception {
-        MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
-        BeanUtil.copyProperties(this, mainTemplateConfig);
+        DataModel dataModel = new DataModel();
+        BeanUtil.copyProperties(this, dataModel);
         //String projectPath = System.getProperty("user.dir");
         String outputPath = PathUtil.getOutJarFolderPath("output");
-        String inputPath = PathUtil.getOutJarFolderPath("template");
-        StaticGenerator.copyFilesByRecursive(inputPath+File.separator + "acm-template",outputPath);
+        String inputPath = PathUtil.getOutJarFolderPath("templates");
+        StaticGenerator.copyFilesByHutool(inputPath+File.separator + "acm-template",outputPath);
 
-        MainGenerator.ReplaceTemplateFile(outputPath+File.separator+"acm-template", mainTemplateConfig);
+        FileGenerator.ReplaceTemplateFile(outputPath+File.separator+"acm-template", dataModel);
         return 0;
     }
 }

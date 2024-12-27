@@ -1,9 +1,9 @@
-package com.yupi.model;
+package com.erokin.maker.model;
 
 import lombok.Data;
 
 @Data
-public class MainTemplateConfig {
+public class DataModel {
     //先声明几个动态生成的需求：
     //1.在代码开头增加作者 @author 注释（增加代码）
     //2.修改程序输出的信息提示（替换代码）

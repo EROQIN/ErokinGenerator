@@ -1,7 +1,7 @@
-package com.yupi.cli.command;
+package com.erokin.maker.cli.command;
 
 import cn.hutool.core.util.ReflectUtil;
-import com.yupi.model.MainTemplateConfig;
+import com.erokin.maker.model.DataModel;
 import picocli.CommandLine;
 
 import java.lang.reflect.Field;
@@ -10,7 +10,7 @@ public class ConfigCommand implements Runnable {
 
     @Override
     public void run() {
-        Field[] fields = ReflectUtil.getFields(MainTemplateConfig.class);
+        Field[] fields = ReflectUtil.getFields(DataModel.class);
         for (Field field : fields) {
             System.out.println("字段类型："+field.getType());
             System.out.println("字段名称："+field.getName());

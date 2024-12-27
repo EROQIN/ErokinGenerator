@@ -1,4 +1,4 @@
-package com.yupi.utils;
+package com.erokin.maker.utils;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

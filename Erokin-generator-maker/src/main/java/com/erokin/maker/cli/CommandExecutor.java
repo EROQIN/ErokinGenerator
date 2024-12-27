@@ -1,8 +1,8 @@
-package com.yupi.cli;
+package com.erokin.maker.cli;
 
-import com.yupi.cli.command.ConfigCommand;
-import com.yupi.cli.command.GenerateCommand;
-import com.yupi.cli.command.ListCommand;
+import com.erokin.maker.cli.command.ConfigCommand;
+import com.erokin.maker.cli.command.GenerateCommand;
+import com.erokin.maker.cli.command.ListCommand;
 import picocli.CommandLine;
 
 @CommandLine.Command(name = "CommandExecutor", mixinStandardHelpOptions = true)

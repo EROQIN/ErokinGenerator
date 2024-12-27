@@ -1,6 +1,5 @@
-package com.yupi.generator;
+package com.erokin.maker.generator.file;
 
-import com.yupi.model.MainTemplateConfig;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
@@ -15,21 +14,6 @@ import java.io.Writer;
  * 动态文件生成器
  */
 public class DynamicGenerator {
-    public static void main(String[] args) throws IOException, TemplateException {
-        //获取模板文件路径：
-        String inputPath = "Erokin-generator-maker\\src\\main\\resources\\template\\MainTemplate.java.ftl";
-        String outputPath = "Erokin-generator-maker\\src\\main\\resources\\MainTemplate.java";
-        //创建数据填充模型
-        MainTemplateConfig dataModel = new MainTemplateConfig();
-        dataModel.setAuthor("Kinzuki");
-        dataModel.setOutputText("Hello World");
-        dataModel.setLoop(true);
-
-        doGenerate(inputPath, outputPath, dataModel);
-    }
-
-
-
 
     /**
      * 通过FreeMarker生成文件

@@ -1,4 +1,4 @@
-package com.yupi.cli.command;
+package com.erokin.maker.cli.command;
 
 import cn.hutool.core.io.FileUtil;
 import picocli.CommandLine;
