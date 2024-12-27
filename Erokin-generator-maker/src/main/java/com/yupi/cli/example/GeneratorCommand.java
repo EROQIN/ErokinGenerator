@@ -32,7 +32,7 @@ public class GeneratorCommand implements Runnable {
         // 获取项目的根路径作为默认输出路径
         String outPutPath = System.getProperty("user.dir");
         // 模板文件夹路径
-        String inputPath = outPutPath + File.separator + "Erokin-generator-basic" + File.separator +"src"+File.separator+"main"+File.separator+"resources"+File.separator+"template"+File.separator+"acm-template";
+        String inputPath = outPutPath + File.separator + "Erokin-generator-maker" + File.separator +"src"+File.separator+"main"+File.separator+"resources"+File.separator+"template"+File.separator+"acm-template";
         copyFilesByRecursive(inputPath, outPutPath);
 
         // 创建数据填充模型，并用命令行参数初始化

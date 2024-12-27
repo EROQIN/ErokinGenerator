@@ -9,7 +9,7 @@ import java.util.List;
 @CommandLine.Command(name = "list", mixinStandardHelpOptions = true)
 public class ListCommand implements Runnable {
     public void run() {
-        List<File> files = FileUtil.loopFiles("D:\\develop\\Erokin-generator\\Erokin-generator-basic\\src\\main\\resources\\template\\acm-template");
+        List<File> files = FileUtil.loopFiles("D:\\develop\\Erokin-generator\\Erokin-generator-maker\\src\\main\\resources\\template\\acm-template");
         for (File file : files) {
             System.out.println(file.getAbsolutePath());
         }

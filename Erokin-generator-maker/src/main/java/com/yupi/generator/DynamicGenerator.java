@@ -17,8 +17,8 @@ import java.io.Writer;
 public class DynamicGenerator {
     public static void main(String[] args) throws IOException, TemplateException {
         //获取模板文件路径：
-        String inputPath = "Erokin-generator-basic\\src\\main\\resources\\template\\MainTemplate.java.ftl";
-        String outputPath = "Erokin-generator-basic\\src\\main\\resources\\MainTemplate.java";
+        String inputPath = "Erokin-generator-maker\\src\\main\\resources\\template\\MainTemplate.java.ftl";
+        String outputPath = "Erokin-generator-maker\\src\\main\\resources\\MainTemplate.java";
         //创建数据填充模型
         MainTemplateConfig dataModel = new MainTemplateConfig();
         dataModel.setAuthor("Kinzuki");
