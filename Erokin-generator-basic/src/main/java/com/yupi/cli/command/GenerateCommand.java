@@ -35,9 +35,10 @@ public class GenerateCommand implements Callable<Integer> {
     public Integer call() throws Exception {
         MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
         BeanUtil.copyProperties(this, mainTemplateConfig);
-        String projectPath = System.getProperty("user.dir");
-        String outputPath = PathUtil.getOutputFolderPath("output");
-        StaticGenerator.copyFilesByRecursive(projectPath +File.separator+"template"+File.separator + "acm-template",outputPath);
+        //String projectPath = System.getProperty("user.dir");
+        String outputPath = PathUtil.getOutJarFolderPath("output");
+        String inputPath = PathUtil.getOutJarFolderPath("template");
+        StaticGenerator.copyFilesByRecursive(inputPath+File.separator + "acm-template",outputPath);
 
         MainGenerator.ReplaceTemplateFile(outputPath+File.separator+"acm-template", mainTemplateConfig);
         return 0;

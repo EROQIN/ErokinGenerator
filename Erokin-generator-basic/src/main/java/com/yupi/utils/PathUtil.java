@@ -19,7 +19,7 @@ public class PathUtil {
      * @return 指定文件的路径字符串。
      * @author Erokin
      */
-    public static String getOutputFolderPath(String outJarFileName) {
+    public static String getOutJarFolderPath(String outJarFileName) {
         try {
             // 获取当前类的Class对象
             Class<?> clazz = cn.hutool.core.io.file.PathUtil.class;
@@ -44,7 +44,7 @@ public class PathUtil {
 
     public static void main(String[] args) {
         // 测试调用该方法
-        String outputPath = getOutputFolderPath("output");
+        String outputPath = getOutJarFolderPath("output");
         if (outputPath != null) {
             System.out.println("Output folder path: " + outputPath);
         } else {
