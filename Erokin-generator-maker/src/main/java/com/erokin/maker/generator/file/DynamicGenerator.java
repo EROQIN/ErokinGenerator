@@ -42,8 +42,17 @@ public class DynamicGenerator {
             String templateName = new File(inputPath).getName();
             //获取模板
             Template template = cfg.getTemplate(templateName);
+            // 创建输出文件对象
+            File outputFile = new File(outputPath);
+
+            // 确保输出文件的父目录存在
+            File parentDir = outputFile.getParentFile();
+            if (parentDir != null && !parentDir.exists()) {
+                parentDir.mkdirs();  // 创建所有必要的父目录
+            }
             //指定输出流流向的文件,创建流管道
             Writer out = new FileWriter(outputPath);
+
             //最终执行！
             template.process(dataModel, out);
             //善后工作

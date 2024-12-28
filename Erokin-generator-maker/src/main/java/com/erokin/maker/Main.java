@@ -7,4 +7,4 @@ public class Main {
         CommandExecutor commandExecutor = new CommandExecutor();
         commandExecutor.doExecute(args);
     }
-}
+} 

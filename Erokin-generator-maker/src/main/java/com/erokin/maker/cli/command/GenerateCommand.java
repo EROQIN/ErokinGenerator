@@ -11,7 +11,7 @@ import picocli.CommandLine;
 import java.io.File;
 import java.util.concurrent.Callable;
 @Data
-@CommandLine.Command(name = "generate", mixinStandardHelpOptions = true)
+@CommandLine.Command(name = "generator", mixinStandardHelpOptions = true)
 public class GenerateCommand implements Callable<Integer> {
 
     /**
