@@ -43,7 +43,7 @@ public class Meta {
 
         @NoArgsConstructor
         @Data
-        public static class ModelInfo {
+        public static class  ModelInfo {
             private String fieldName;
             private String type;
             private String description;
