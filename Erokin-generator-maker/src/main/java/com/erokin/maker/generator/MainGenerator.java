@@ -21,7 +21,12 @@ public class MainGenerator {
             System.out.println(inputPath + "\n==>\n" + outputPath);
             if (fileInfo.getType().equals("dynamic")) {
                 DynamicGenerator.dynamicGenerate(inputPath, outputPath, meta);
-            } else {
+            }
+            else if(fileInfo.getType().equals("dir")){
+                //创建文件夹：
+                FileUtil.mkdir(outputPath);
+            }
+            else {
                 FileUtil.copyFile(inputPath, outputPath);
             }
         }
