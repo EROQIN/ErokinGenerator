@@ -29,10 +29,12 @@ public class MainGenerator {
                 FileUtil.copyFile(inputPath, outputPath);
             }
         }
+
+
         //输出路径
         // 读取resources目录：
-        ClassPathResource classPathResource = new ClassPathResource("");
-        String inputResourePath = classPathResource.getAbsolutePath();
+        //ClassPathResource classPathResource = new ClassPathResource("");
+        //String inputResourePath = classPathResource.getAbsolutePath();
 
         //Java包中的基础路径
         //String outPutBasePackage = meta.getBasePackage();
