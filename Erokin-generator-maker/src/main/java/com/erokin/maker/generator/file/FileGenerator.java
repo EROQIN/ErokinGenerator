@@ -19,6 +19,7 @@ public class FileGenerator {
                 }else {
                     //对文件进行替换：
                     //判断文件名是否以.ftl结尾
+
                     if (f.getName().endsWith(".ftl")){
                         //模板文件+数据模型
                         DynamicGenerator.dynamicGenerate(f.getAbsolutePath(), f.getAbsolutePath().replace(".ftl", ""),dataModel);
