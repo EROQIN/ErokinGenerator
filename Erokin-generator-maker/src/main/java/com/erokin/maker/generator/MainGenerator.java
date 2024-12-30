@@ -1,13 +1,9 @@
 package com.erokin.maker.generator;
 
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.resource.ClassPathResource;
-import cn.hutool.core.util.StrUtil;
 import com.erokin.maker.generator.file.DynamicGenerator;
-import com.erokin.maker.generator.file.FileGenerator;
-import com.erokin.maker.generator.file.StaticGenerator;
-import com.erokin.maker.mata.Meta;
-import com.erokin.maker.mata.MetaManager;
+import com.erokin.maker.meta.Meta;
+import com.erokin.maker.meta.MetaManager;
 
 import java.io.File;
 

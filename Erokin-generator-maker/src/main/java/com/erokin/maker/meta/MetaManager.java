@@ -1,4 +1,4 @@
-package com.erokin.maker.mata;
+package com.erokin.maker.meta;
 
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.json.JSONUtil;

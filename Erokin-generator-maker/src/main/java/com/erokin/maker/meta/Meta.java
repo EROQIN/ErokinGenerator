@@ -1,4 +1,4 @@
-package com.erokin.maker.mata;
+package com.erokin.maker.meta;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
