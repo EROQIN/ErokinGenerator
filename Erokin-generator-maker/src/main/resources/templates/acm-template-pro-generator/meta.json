@@ -81,6 +81,12 @@
         "outputPath": "src/main/java/com/erokin/generator/FileGenerator.java",
         "type": "file",
         "generateType": "dynamic"
+      },
+      {
+        "inputPath": "java/utils/PathUtil.java.ftl",
+        "outputPath": "src/main/java/com/erokin/utils/PathUtil.java",
+        "type": "file",
+        "generateType": "dynamic"
       }
 
 

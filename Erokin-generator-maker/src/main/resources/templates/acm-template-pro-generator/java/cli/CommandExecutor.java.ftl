@@ -1,8 +1,8 @@
-package ${basePackage}.maker.cli;
+package ${basePackage}.cli;
 
-import ${basePackage}.maker.cli.command.ConfigCommand;
-import ${basePackage}.maker.cli.command.GenerateCommand;
-import ${basePackage}.maker.cli.command.ListCommand;
+import ${basePackage}.cli.command.ConfigCommand;
+import ${basePackage}.cli.command.GenerateCommand;
+import ${basePackage}.cli.command.ListCommand;
 import picocli.CommandLine;
 
 @CommandLine.Command(name = "${name}", mixinStandardHelpOptions = true)

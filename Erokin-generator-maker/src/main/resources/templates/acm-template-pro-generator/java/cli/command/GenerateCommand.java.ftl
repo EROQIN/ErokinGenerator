@@ -1,10 +1,10 @@
-package ${basePackage}.maker.cli.command;
+package ${basePackage}.cli.command;
 
 import cn.hutool.core.bean.BeanUtil;
-import ${basePackage}.maker.generator.file.FileGenerator;
-import ${basePackage}.maker.generator.file.StaticGenerator;
-import ${basePackage}.maker.model.DataModel;
-import ${basePackage}.maker.utils.PathUtil;
+import ${basePackage}.generator.file.FileGenerator;
+import ${basePackage}.generator.file.StaticGenerator;
+import ${basePackage}.model.DataModel;
+import ${basePackage}.utils.PathUtil;
 import lombok.Data;
 import picocli.CommandLine;
 
