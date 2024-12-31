@@ -18,11 +18,11 @@ public class MainGenerator {
         for (Meta.FileConfig.FileInfo fileInfo : meta.getFileConfig().getFiles()) {
             String inputPath = inputBasePath + File.separator + fileInfo.getInputPath();
             String outputPath = outputBasePath + File.separator + fileInfo.getOutputPath();
-            System.out.println(inputPath + "\n==>\n" + outputPath);
-            if (fileInfo.getType().equals("dynamic")) {
+            //System.out.println(inputPath + "\n==>\n" + outputPath);
+            if (fileInfo.getGenerateType().equals("dynamic")) {
                 DynamicGenerator.dynamicGenerate(inputPath, outputPath, meta);
             }
-            else if(fileInfo.getType().equals("dir")){
+            else if(fileInfo.getGenerateType().equals("dir")){
                 //创建文件夹：
                 FileUtil.mkdir(outputPath);
             }

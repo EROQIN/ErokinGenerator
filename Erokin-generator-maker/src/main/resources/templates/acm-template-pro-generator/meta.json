@@ -33,7 +33,58 @@
         "outputPath": "README.md",
         "type": "file",
         "generateType": "static"
+      },
+      {
+        "inputPath": "pom.xml.ftl",
+        "outputPath": "pom.xml",
+        "type": "file",
+        "generateType": "dynamic"
+      },
+      {
+        "inputPath": "java/cli/CommandExecutor.java.ftl",
+        "outputPath": "src/main/java/com/erokin/cli/CommandExecutor.java",
+        "type": "file",
+        "generateType": "dynamic"
+      },
+      {
+        "inputPath": "java/cli/command/ConfigCommand.java.ftl",
+        "outputPath": "src/main/java/com/erokin/cli/command/ConfigCommand.java",
+        "type": "file",
+        "generateType": "dynamic"
+      },
+      {
+        "inputPath": "java/cli/command/GenerateCommand.java.ftl",
+        "outputPath": "src/main/java/com/erokin/cli/command/GenerateCommand.java",
+        "type": "file",
+        "generateType": "dynamic"
+      },
+      {
+        "inputPath": "java/cli/command/ListCommand.java.ftl",
+        "outputPath": "src/main/java/com/erokin/cli/command/ListCommand.java",
+        "type": "file",
+        "generateType": "dynamic"
+      },
+      {
+        "inputPath": "java/generator/DynamicGenerator.java.ftl",
+        "outputPath": "src/main/java/com/erokin/generator/DynamicGenerator.java",
+        "type": "file",
+        "generateType": "dynamic"
+      },
+      {
+        "inputPath": "java/generator/StaticGenerator.java.ftl",
+        "outputPath": "src/main/java/com/erokin/generator/StaticGenerator.java",
+        "type": "file",
+        "generateType": "dynamic"
+      },
+      {
+        "inputPath": "java/generator/FileGenerator.java.ftl",
+        "outputPath": "src/main/java/com/erokin/generator/FileGenerator.java",
+        "type": "file",
+        "generateType": "dynamic"
       }
+
+
+
     ]
   },
   "modelConfig": {

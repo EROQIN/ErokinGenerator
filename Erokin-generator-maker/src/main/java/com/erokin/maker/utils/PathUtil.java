@@ -1,6 +1,5 @@
 package com.erokin.maker.utils;
 
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
