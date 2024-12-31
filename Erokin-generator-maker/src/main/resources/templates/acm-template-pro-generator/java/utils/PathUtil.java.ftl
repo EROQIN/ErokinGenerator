@@ -13,9 +13,9 @@ public class PathUtil {
     private PathUtil() {};
 
     /**
-     * 获取与JAR包平级的名为outOfJarFile的路径。
+     * 获取与JAR包平级的名为outOfJarFile的路径
      * @param outJarFileName 需要获取的在jar包外的文件名
-     * @return 指定文件的路径字符串。
+     * @return 指定文件的路径字符串
      * @author Erokin
      */
     public static String getOutJarFolderPath(String outJarFileName) {
