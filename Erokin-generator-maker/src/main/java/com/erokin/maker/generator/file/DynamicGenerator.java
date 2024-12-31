@@ -21,7 +21,7 @@ public class DynamicGenerator {
      * @param outputPath 输出路径
      * @param dataModel 填充数据
      */
-    public static void dynamicGenerate(String inputPath, String outputPath, Object dataModel) {
+    public static void doGenerate(String inputPath, String outputPath, Object dataModel) {
         //------------FreeMarker----------------
         Configuration cfg = new Configuration(Configuration.VERSION_2_3_22);
         cfg.setNumberFormat("0.######");  // now it will print 1000000

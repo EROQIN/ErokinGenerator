@@ -20,7 +20,7 @@ public class MetaManager {
         return meta;
     }
     private static Meta initMeta(){
-        String metaJson = ResourceUtil.readUtf8Str("templates/acm-template-pro-generator/meta.json");
+        String metaJson = ResourceUtil.readUtf8Str("meta.json");
         Meta newMeta = JSONUtil.toBean(metaJson, Meta.class);
         return newMeta;
     }

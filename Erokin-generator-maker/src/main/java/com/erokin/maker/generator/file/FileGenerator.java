@@ -22,7 +22,7 @@ public class FileGenerator {
 
                     if (f.getName().endsWith(".ftl")){
                         //模板文件+数据模型
-                        DynamicGenerator.dynamicGenerate(f.getAbsolutePath(), f.getAbsolutePath().replace(".ftl", ""),dataModel);
+                        DynamicGenerator.doGenerate(f.getAbsolutePath(), f.getAbsolutePath().replace(".ftl", ""),dataModel);
                         //删除模板文件
                         f.delete();
                     }

@@ -10,7 +10,7 @@ public class StaticGenerator {
      * @param outputPath 输出路径
      */
     public static void copyFilesByHutool(String inputPath, String outputPath) {
-        FileUtil.copy(inputPath, outputPath, false);
+        FileUtil.copy(inputPath, outputPath, true);
     }
 
 
