@@ -6,8 +6,9 @@
   "author": "erokin",
   "createTime": "2023-11-22",
   "fileConfig": {
-    "inputRootPath": "D://develop/Erokin-generator/Erokin-generator-demo-projects/acm-template-pro",
+    "inputRootPath": ".source/acm-template-pro",
     "outputRootPath": "generated",
+    "sourceRootPath": "D://develop/Erokin-generator/Erokin-generator-demo-projects/acm-template-pro",
     "type": "dir",
     "files": [
       {

@@ -6,6 +6,7 @@ import cn.hutool.core.util.StrUtil;
 import com.erokin.maker.generator.JarGenerator;
 import com.erokin.maker.generator.ScriptGenerator;
 import com.erokin.maker.generator.file.DynamicGenerator;
+import com.erokin.maker.generator.file.StaticGenerator;
 import com.erokin.maker.meta.Meta;
 import com.erokin.maker.meta.MetaManager;
 import freemarker.template.TemplateException;
@@ -25,6 +26,10 @@ public class MainGenerator {
         if (!FileUtil.exist(outputPath)) {
             FileUtil.mkdir(outputPath);
         }
+        //将模板复制到.source目录下
+        String outputSourcePath = outputPath + File.separator + ".source";
+        String inputSourcePath = meta.getFileConfig().getSourceRootPath();
+        StaticGenerator.copyFilesByHutool(inputSourcePath, outputSourcePath);
 
         // 读取 resources 目录
         ClassPathResource classPathResource = new ClassPathResource("");
