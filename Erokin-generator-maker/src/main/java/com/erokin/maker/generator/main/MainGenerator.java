@@ -106,5 +106,22 @@ public class MainGenerator {
         String jarName = String.format("%s-%s-jar-with-dependencies.jar", meta.getName(), meta.getVersion());
         String jarPath = "target/" + jarName;
         ScriptGenerator.doGenerate(shellOutputFilePath, jarPath);
+
+        //生成精简版程序
+        String distOutputPath = outputPath + "-dist";
+        //1.拷贝jar包
+        String targetAbsolutePath = distOutputPath + File.separator + "target";
+        FileUtil.mkdir(targetAbsolutePath);
+        String jarAbsolutePath = outputPath + File.separator + jarPath;
+        FileUtil.copy(jarAbsolutePath, targetAbsolutePath, true);
+
+        //2.拷贝脚本文件
+        FileUtil.copy(shellOutputFilePath, distOutputPath, true);
+        FileUtil.copy(shellOutputFilePath+".bat", distOutputPath, true);
+
+        //3.拷贝源模板文件
+        FileUtil.copy(outputPath+ File.separator + ".source", distOutputPath, true);
+
+
     }
 }
