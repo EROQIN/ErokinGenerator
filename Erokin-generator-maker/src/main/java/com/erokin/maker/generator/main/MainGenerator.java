@@ -93,6 +93,11 @@ public class MainGenerator {
         outputFilePath = outputPath + File.separator + "pom.xml";
         DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
+        // README.md
+        inputFilePath = inputResourcePath + File.separator + "templates/README.md.ftl";
+        outputFilePath = outputPath + File.separator + "README.md";
+        DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+
         // 构建 jar 包
         JarGenerator.doGenerate(outputPath);
 
