@@ -6,6 +6,9 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.erokin.maker.meta.Meta.FileConfig;
 import com.erokin.maker.meta.Meta.ModelConfig;
+import com.erokin.maker.meta.enums.FileGenerateTypeEnum;
+import com.erokin.maker.meta.enums.FileTypeEnum;
+import com.erokin.maker.meta.enums.ModelTypeEnum;
 
 import java.nio.file.Paths;
 import java.util.List;
@@ -37,7 +40,7 @@ public class MetaValidator {
             }
             String modelType = model.getType();
             if (StrUtil.isBlankIfStr(modelType)) {
-                modelType = "String";
+                modelType = ModelTypeEnum.STRING.getValue();
                 model.setType(modelType);
             }
             String modelDescription = model.getDescription();
@@ -75,7 +78,7 @@ public class MetaValidator {
         }
         String type = fileConfig.getType();
         if (StrUtil.isEmpty(type)) {
-            type = "dir";
+            type = FileTypeEnum.DIR.getValue();
             fileConfig.setType(type);
         }
         List<FileConfig.FileInfo> files = fileConfig.getFiles();
@@ -97,9 +100,9 @@ public class MetaValidator {
             String fileType = file.getType();
             if (StrUtil.isBlankIfStr(fileType)) {
                 if (StrUtil.isEmpty(FileUtil.getSuffix(inputPath))) {
-                    fileType = "dir";
+                    fileType = FileTypeEnum.DIR.getValue();
                 } else {
-                    file.setType("file");
+                    file.setType(FileTypeEnum.FILE.getValue());
                 }
             }
             //文件末尾不为.ftl时，为static，否则是dynamic
@@ -108,9 +111,9 @@ public class MetaValidator {
                 continue;
             }
             if (inputPath.endsWith(".ftl")) {
-                generateType = "dynamic";
+                generateType = FileGenerateTypeEnum.DYNAMIC.getValue();
             } else {
-                generateType = "static";
+                generateType = FileGenerateTypeEnum.STATIC.getValue();
             }
             file.setGenerateType(generateType);
         }

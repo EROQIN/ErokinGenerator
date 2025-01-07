@@ -34,7 +34,7 @@ public class ScriptGenerator {
         sb.append(String.format("java -jar %s %%*", jarPath)).append("\n");
         sb.append("pause");
         FileUtil.writeBytes(sb.toString().getBytes(StandardCharsets.UTF_8), outputPath + ".bat");
-    }
+    } 
 
     public static void main(String[] args) throws IOException {
         String outputPath = System.getProperty("user.dir") + File.separator + "generator";
