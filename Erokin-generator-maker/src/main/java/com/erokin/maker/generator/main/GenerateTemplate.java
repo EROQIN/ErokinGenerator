@@ -17,6 +17,7 @@ import java.io.IOException;
 public abstract class GenerateTemplate {
     public void doGenerate() throws TemplateException, IOException, InterruptedException {
         Meta meta = MetaManager.getMetaObject();
+
         // 输出根路径
         String projectPath = System.getProperty("user.dir");
         String outputPath = projectPath + File.separator + "generated" + File.separator + meta.getName();
@@ -137,6 +138,7 @@ public abstract class GenerateTemplate {
         inputFilePath = inputResourcePath + File.separator + "templates/README.md.ftl";
         outputFilePath = outputPath + File.separator + "README.md";
         DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+
     }
 
     protected void copySources(String outputPath, Meta meta) {

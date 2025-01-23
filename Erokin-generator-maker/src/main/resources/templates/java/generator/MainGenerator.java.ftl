@@ -18,22 +18,38 @@ public class MainGenerator {
      * @throws TemplateException
      * @throws IOException
      */
-    public static void doGenerate(Object model) throws TemplateException, IOException {
+    public static void doGenerate(DataModel model) throws TemplateException, IOException {
         String inputRootPath = "${fileConfig.inputRootPath}";
         String outputRootPath = "${fileConfig.outputRootPath}";
 
         String inputPath;
         String outputPath;
-<#list fileConfig.files as fileInfo>
 
-    <#if fileInfo.type == "static">
+<#list modelConfig.models as modelInfo>
+        ${modelInfo.type} ${modelInfo.fieldName} = model.${modelInfo.fieldName};
+</#list>
+
+
+<#list fileConfig.files as fileInfo>
+        <#--  存在condition时，添加条件  -->
+    <#if fileInfo.condition ??>
+        if (${fileInfo.condition}){
+            inputPath = new File(inputRootPath, "${fileInfo.inputPath}").getAbsolutePath();
+            outputPath = new File(outputRootPath, "${fileInfo.outputPath}").getAbsolutePath();
+        <#if fileInfo.type == "static">
+            StaticGenerator.copyFilesByHutool(inputPath, outputPath);
+        <#else >
+            DynamicGenerator.doGenerate(inputPath, outputPath, model);
+        </#if>
+        }
+    <#else>
         inputPath = new File(inputRootPath, "${fileInfo.inputPath}").getAbsolutePath();
         outputPath = new File(outputRootPath, "${fileInfo.outputPath}").getAbsolutePath();
+        <#if fileInfo.type == "static">
         StaticGenerator.copyFilesByHutool(inputPath, outputPath);
-    <#else >
-        inputPath = new File(inputRootPath, "${fileInfo.inputPath}").getAbsolutePath();
-        outputPath = new File(outputRootPath, "${fileInfo.outputPath}").getAbsolutePath();
+        <#else >
         DynamicGenerator.doGenerate(inputPath, outputPath, model);
+        </#if>
     </#if>
 </#list>
     }
