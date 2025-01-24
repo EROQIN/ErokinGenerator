@@ -10,6 +10,7 @@ public class MainGenerator extends GenerateTemplate {
     @Override
     protected void buildDist(String outputPath, String jarPath, String shellOutputFilePath) {
         System.out.println("不生成dist");
+
     }
 
     public static void main(String[] args) throws TemplateException, IOException, InterruptedException {

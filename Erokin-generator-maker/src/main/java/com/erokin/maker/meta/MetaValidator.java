@@ -86,6 +86,10 @@ public class MetaValidator {
             return;
         }
         for (FileConfig.FileInfo file : files) {
+            if(FileTypeEnum.GROUP.getValue().equals(type)){
+                continue;
+            }
+            //inputPath：必填
             String inputPath = file.getInputPath();
             if (StrUtil.isBlankIfStr(inputPath)) {
                 throw new MetaException("未填写 inputPath");
