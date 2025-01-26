@@ -12,6 +12,7 @@ import com.erokin.maker.meta.enums.ModelTypeEnum;
 
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MetaValidator {
     public static void doValidAndFill(Meta meta) {
@@ -34,6 +35,18 @@ public class MetaValidator {
             return;
         }
         for (ModelConfig.ModelInfo model : models) {
+            //groupKey不为空，不校验
+            String groupKey = model.getGroupKey();
+            if (StrUtil.isNotEmpty(groupKey)) {
+                List<ModelConfig.ModelInfo> subModelInfoList = model.getModels();
+                String allArgsStr = subModelInfoList.stream()
+                        .map(subModelInfo -> String.format("\"--%s\"", subModelInfo.getFieldName()))
+                        .collect(Collectors.joining(", "));
+                model.setAllArgsStr(allArgsStr);
+                //System.out.println(allArgsStr);
+                continue;
+            }
+
             String fieldName = model.getFieldName();
             if (StrUtil.isBlankIfStr(fieldName)) {
                 throw new MetaException("未填写 fieldName");
@@ -86,7 +99,7 @@ public class MetaValidator {
             return;
         }
         for (FileConfig.FileInfo file : files) {
-            if(FileTypeEnum.GROUP.getValue().equals(type)){
+            if(FileTypeEnum.GROUP.getValue().equals(file.getType())){
                 continue;
             }
             //inputPath：必填

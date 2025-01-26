@@ -9,6 +9,7 @@ import com.erokin.maker.generator.file.DynamicGenerator;
 import com.erokin.maker.generator.file.StaticGenerator;
 import com.erokin.maker.meta.Meta;
 import com.erokin.maker.meta.MetaManager;
+import com.erokin.maker.meta.MetaValidator;
 import freemarker.template.TemplateException;
 
 import java.io.File;
@@ -17,6 +18,8 @@ import java.io.IOException;
 public abstract class GenerateTemplate {
     public void doGenerate() throws TemplateException, IOException, InterruptedException {
         Meta meta = MetaManager.getMetaObject();
+        // 校验并填充数据
+        MetaValidator.doValidAndFill(meta);
 
         // 输出根路径
         String projectPath = System.getProperty("user.dir");
@@ -89,6 +92,12 @@ public abstract class GenerateTemplate {
         outputFilePath = outputBaseJavaPackagePath + "/model/DataModel.java";
         DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
+        // generator.MainGenerator
+        inputFilePath = inputResourcePath + File.separator + "templates/java/generator/MainGenerator.java.ftl";
+        outputFilePath = outputBaseJavaPackagePath + "/generator/MainGenerator.java";
+        DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+
+
         // cli.command.ConfigCommand
         inputFilePath = inputResourcePath + File.separator + "templates/java/cli/command/ConfigCommand.java.ftl";
         outputFilePath = outputBaseJavaPackagePath + "/cli/command/ConfigCommand.java";
@@ -120,9 +129,9 @@ public abstract class GenerateTemplate {
         DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
         // generator.MainGenerator
-        inputFilePath = inputResourcePath + File.separator + "templates/java/generator/MainGenerator.java.ftl";
-        outputFilePath = outputBaseJavaPackagePath + "/generator/MainGenerator.java";
-        DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
+        //inputFilePath = inputResourcePath + File.separator + "templates/java/generator/MainGenerator.java.ftl";
+        //outputFilePath = outputBaseJavaPackagePath + "/generator/MainGenerator.java";
+        //DynamicGenerator.doGenerate(inputFilePath , outputFilePath, meta);
 
         // generator.StaticGenerator
         inputFilePath = inputResourcePath + File.separator + "templates/java/generator/StaticGenerator.java.ftl";

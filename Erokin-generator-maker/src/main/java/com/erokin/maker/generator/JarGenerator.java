@@ -16,7 +16,7 @@ public class JarGenerator {
         ProcessBuilder processBuilder = new ProcessBuilder(mavenCommand.split(" "));
         processBuilder.directory(new File(projectDir));
         Map<String, String> environment = processBuilder.environment();
-        System.out.println(environment);
+        //System.out.println(environment);
         Process process = processBuilder.start();
 
         // 读取命令的输出
