@@ -5,6 +5,10 @@ Erokin-generator.iml
 Erokin-generator-basic.iml
 Erokin-generator-demo-projects.iml
 output/
+
+generated
+.temp
+
 ### Java template
 # Compiled class file
 *.class
