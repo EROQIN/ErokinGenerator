@@ -48,6 +48,18 @@
             <artifactId>picocli</artifactId>
             <version>4.7.6</version>
         </dependency>
+
+
+            <!-- SLF4J API -->
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version>
+        </dependency>
+
+
+
     </dependencies>
     <build>
         <plugins>
