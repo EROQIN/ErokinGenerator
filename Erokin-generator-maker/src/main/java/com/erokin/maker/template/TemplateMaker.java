@@ -8,11 +8,16 @@ import cn.hutool.json.JSONUtil;
 import com.erokin.maker.meta.Meta;
 import com.erokin.maker.meta.enums.FileGenerateTypeEnum;
 import com.erokin.maker.meta.enums.FileTypeEnum;
+import com.erokin.maker.template.enums.FileFilterRangeEnum;
+import com.erokin.maker.template.enums.FileFilterRuleEnum;
+import com.erokin.maker.template.model.FileFilterConfig;
+import com.erokin.maker.template.model.TemplateMakerFileConfig;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,13 +35,20 @@ public class TemplateMaker {
      * 制作模板
      * @param newMeta
      * @param originProjectPath
-     * @param fileInputPath
+     * @param templateMakerFileConfig
      * @param modelInfo
      * @param searchStr
      * @param id
      * @return id
      */
-    private static long makeTemplate(Meta newMeta, String originProjectPath,String fileInputPath, Meta.ModelConfig.ModelInfo modelInfo,String searchStr, Long id){
+    private static long makeTemplate(Meta newMeta,
+                                     String originProjectPath,
+                                     TemplateMakerFileConfig templateMakerFileConfig,
+                                     Meta.ModelConfig.ModelInfo modelInfo,
+                                     String searchStr,
+                                     Long id
+
+    ){
 
         //没有id则生成id
         if(id == null){
@@ -58,19 +70,24 @@ public class TemplateMaker {
         String sourceRootPath = templatePath + File.separator + FileUtil.getLastPathEle(Paths.get(originProjectPath)).toString();
         //win系统下需要对文件路径进行替换
         sourceRootPath = sourceRootPath.replaceAll("\\\\", "/");
+        List<TemplateMakerFileConfig.FileInfoConfig> fileInfoConfigList = templateMakerFileConfig.getFiles();
 
-
-        String inputFileAbsolutePath = sourceRootPath + File.separator + fileInputPath;
         List<Meta.FileConfig.FileInfo> newFileInfoList = new ArrayList<>();
-        if (FileUtil.isDirectory(inputFileAbsolutePath)) {
-            List<File> fileList = FileUtil.loopFiles(inputFileAbsolutePath);
-            for(File file : fileList){
-            Meta.FileConfig.FileInfo fileInfo = makeFileTemplate(modelInfo, searchStr, sourceRootPath,file);
-            newFileInfoList.add(fileInfo);
+        for (TemplateMakerFileConfig.FileInfoConfig fileInfoConfig : fileInfoConfigList) {
+            String fileInputPath = fileInfoConfig.getPath();
+            //如果填的是相对路径，要改为绝对路径
+            if(!fileInputPath.startsWith(sourceRootPath)){
+                fileInputPath = sourceRootPath + File.separator + fileInputPath;
             }
-        }else {
-            Meta.FileConfig.FileInfo fileInfo = makeFileTemplate(modelInfo, searchStr, sourceRootPath,new File(inputFileAbsolutePath));
-            newFileInfoList.add(fileInfo);
+            //String inputFileAbsolutePath = sourceRootPath + File.separator + fileInputPath;
+
+
+                List<File> fileList = FileFilter.doFilter(fileInputPath, fileInfoConfig.getFilterConfigList());
+                for(File file : fileList){
+                    Meta.FileConfig.FileInfo fileInfo = makeFileTemplate(modelInfo, searchStr, sourceRootPath,file);
+                    newFileInfoList.add(fileInfo);
+                }
+
         }
 
         //endregion
@@ -139,6 +156,9 @@ public class TemplateMaker {
 
     private static Meta.FileConfig.FileInfo makeFileTemplate(Meta.ModelConfig.ModelInfo modelInfo, String searchStr, String sourceRootPath, File inputFile) {
 
+
+
+
         String inputFileAbsolutePath = inputFile.getAbsolutePath();
         inputFileAbsolutePath = inputFileAbsolutePath.replaceAll("\\\\", "/");
         String fileInputPath =inputFileAbsolutePath.replace(sourceRootPath+"/", "");
@@ -165,15 +185,34 @@ public class TemplateMaker {
         //输出模板文件
         //获取文件的输出完整路径
 
-        FileUtil.writeUtf8String(newFileContent, outputAbsolutePath);
+
 
         Meta.FileConfig.FileInfo fileInfo = new Meta.FileConfig.FileInfo();
         fileInfo.setInputPath(fileInputPath);
         fileInfo.setOutputPath(fileOutputPath);
         fileInfo.setType(FileTypeEnum.FILE.getValue());
-        fileInfo.setGenerateType(FileGenerateTypeEnum.DYNAMIC.getValue());
+
+
+        //判断是否和原文件内容一致，如果一致,静态生成
+        if (fileContent.equals(newFileContent)){
+            //输出路径=输入路径
+            fileInfo.setOutputPath(fileInputPath);
+            fileInfo.setGenerateType(FileGenerateTypeEnum.STATIC.getValue());
+        }else {
+            fileInfo.setGenerateType(FileGenerateTypeEnum.DYNAMIC.getValue());
+            //输出模板文件
+            FileUtil.writeUtf8String(newFileContent, outputAbsolutePath);
+        }
+
+
+
         return fileInfo;
     }
+
+    /**
+     * TODO:文件过滤
+     */
+
 
 
     //main用于测试开发，产出方法
@@ -187,7 +226,11 @@ public class TemplateMaker {
         String projectPath = System.getProperty("user.dir");
         //指定原始项目路径，
         String originProjectPath = new File(projectPath).getParent() + File.separator + "Erokin-generator-demo-projects/springboot-init";
-        String fileInputPath = "src/main/java/com/yupi/springbootinit";
+        String fileInputPath1 = "src/main/java/com/yupi/springbootinit/common";
+        String fileInputPath2 = "src/main/java/com/yupi/springbootinit/controller";
+        List<String> fileInputPathList = new ArrayList<>();
+        fileInputPathList.add(fileInputPath1);
+        fileInputPathList.add(fileInputPath2);
         //3.输入模型参数信息
         //Meta.ModelConfig.ModelInfo modelInfo = new Meta.ModelConfig.ModelInfo();
         //modelInfo.setFieldName("outputText");
@@ -203,11 +246,29 @@ public class TemplateMaker {
         //替换变量（首次）
         //String searchStr = "Sum：";
         //第二次
-        String searchStr = "MainTemplate";
+        String searchStr = "BaseResponse";
+        // 文件过滤
+        TemplateMakerFileConfig templateMakerFileConfig = new TemplateMakerFileConfig();
+        TemplateMakerFileConfig.FileInfoConfig fileInfoConfig1 = new TemplateMakerFileConfig.FileInfoConfig();
+        fileInfoConfig1.setPath(fileInputPath1);
+        List<FileFilterConfig> fileFilterConfigList = new ArrayList<>();
+        FileFilterConfig fileFilterConfig = FileFilterConfig.builder()
+                .range(FileFilterRangeEnum.FILE_NAME.getValue())
+                .rule(FileFilterRuleEnum.CONTAINS.getValue())
+                .value("Base")
+                .build();
+        fileFilterConfigList.add(fileFilterConfig);
+        fileInfoConfig1.setFilterConfigList(fileFilterConfigList);
+
+        TemplateMakerFileConfig.FileInfoConfig fileInfoConfig2 = new TemplateMakerFileConfig.FileInfoConfig();
+        fileInfoConfig2.setPath(fileInputPath2);
+        templateMakerFileConfig.setFiles(Arrays.asList(fileInfoConfig1, fileInfoConfig2));
+
+        long id = makeTemplate(meta, originProjectPath, templateMakerFileConfig, modelInfo, searchStr, 1735281524670181376L);
+        System.out.println(id);
 
 
-        long id = makeTemplate(meta, originProjectPath, fileInputPath, modelInfo, searchStr, null);
-        log.info("模板制作成功，id:{}",id);
+
 
     }
 
@@ -218,7 +279,7 @@ public class TemplateMaker {
     private static List<Meta.FileConfig.FileInfo> distinctFiles(List<Meta.FileConfig.FileInfo> fileInfoList){
         ArrayList<Meta.FileConfig.FileInfo> newFileInfoList = new ArrayList<>(fileInfoList.stream()
                 .collect(
-                        Collectors.toMap(com.erokin.maker.meta.Meta.FileConfig.FileInfo::getInputPath, o -> o, (e, r) -> r)
+                        Collectors.toMap(Meta.FileConfig.FileInfo::getInputPath, o -> o, (e, r) -> r)
                 ).values());
         return newFileInfoList;
 
