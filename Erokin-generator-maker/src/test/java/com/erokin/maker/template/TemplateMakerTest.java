@@ -1,9 +1,12 @@
 package com.erokin.maker.template;
 
+import cn.hutool.core.io.resource.ResourceUtil;
+import cn.hutool.json.JSONUtil;
 import com.erokin.maker.meta.Meta;
+import com.erokin.maker.template.model.TemplateMakerConfig;
 import com.erokin.maker.template.model.TemplateMakerFileConfig;
 import com.erokin.maker.template.model.TemplateMakerModelConfig;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.io.File;
 import java.util.Arrays;
@@ -77,4 +80,16 @@ public class TemplateMakerTest {
         long id = TemplateMaker.makeTemplate(meta, originProjectPath, templateMakerFileConfig, templateMakerModelConfig, 1L);
         System.out.println(id);
     }
+    /**
+     * 使用 JSON 制作模板
+     */
+    @Test
+    public void testMakeTemplateWithJSON() {
+        String configStr = ResourceUtil.readUtf8Str("templateMaker.json");
+        TemplateMakerConfig templateMakerConfig = JSONUtil.toBean(configStr, TemplateMakerConfig.class);
+        long id = TemplateMaker.makeTemplate(templateMakerConfig);
+        System.out.println(id);
+    }
+
+
 }

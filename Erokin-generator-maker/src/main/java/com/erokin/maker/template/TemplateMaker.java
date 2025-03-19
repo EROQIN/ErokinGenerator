@@ -10,6 +10,7 @@ import cn.hutool.json.JSONUtil;
 import com.erokin.maker.meta.Meta;
 import com.erokin.maker.meta.enums.FileGenerateTypeEnum;
 import com.erokin.maker.meta.enums.FileTypeEnum;
+import com.erokin.maker.template.model.TemplateMakerConfig;
 import com.erokin.maker.template.model.TemplateMakerFileConfig;
 import com.erokin.maker.template.model.TemplateMakerModelConfig;
 
@@ -22,6 +23,25 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public class TemplateMaker {
+
+
+
+    /**
+     * 制作模板
+     * @param templateMakerConfig
+     * @return
+     */
+    public static long makeTemplate(TemplateMakerConfig templateMakerConfig){
+        Long id = templateMakerConfig.getId();
+        Meta meta = templateMakerConfig.getMeta();
+        String originProjectPath = templateMakerConfig.getOriginProjectPath();
+        TemplateMakerFileConfig templateMakerFileConfig = templateMakerConfig.getFileConfig();
+        TemplateMakerModelConfig templateMakerModelConfig = templateMakerConfig.getModelConfig();
+        return makeTemplate(meta, originProjectPath, templateMakerFileConfig, templateMakerModelConfig, id);
+    }
+
+
+
 
     /**
      * 制作模板
