@@ -8,14 +8,13 @@ const Settings: ProLayoutProps & {
   logo?: string;
 } = {
   navTheme: 'light',
-  // 蓝色
-  colorPrimary: '#2a65ec',
+  colorPrimary: '#2F54EB',
   layout: 'top',
-  contentWidth: 'Fluid',
+  contentWidth: 'Fixed',
   fixedHeader: false,
   fixSiderbar: true,
   colorWeak: false,
-  title: '代码生成器',
+  title: 'Erokin代码生成',
   pwa: true,
   iconfontUrl: '',
   token: {

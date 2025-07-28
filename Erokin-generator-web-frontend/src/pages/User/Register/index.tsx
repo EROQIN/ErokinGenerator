@@ -3,7 +3,7 @@ import { userRegisterUsingPost } from '@/services/backend/userController';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormText } from '@ant-design/pro-components';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
-import { Helmet, history } from '@umijs/max';
+import { Helmet, history, useModel } from '@umijs/max';
 import { message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import { Link } from 'umi';
@@ -15,6 +15,7 @@ import Settings from '../../../../config/defaultSettings';
  */
 const UserRegisterPage: React.FC = () => {
   const [type, setType] = useState<string>('account');
+  const { initialState, setInitialState } = useModel('@@initialState');
   const containerClassName = useEmotionCss(() => {
     return {
       display: 'flex',
@@ -27,19 +28,7 @@ const UserRegisterPage: React.FC = () => {
     };
   });
 
-  /**
-   * 提交注册
-   * @param values
-   */
   const handleSubmit = async (values: API.UserRegisterRequest) => {
-    // 前端校验
-    // 1. 判断密码是否一致
-    const { userPassword, checkPassword } = values;
-    if (userPassword !== checkPassword) {
-      message.error('二次输入的密码不一致');
-      return;
-    }
-
     try {
       // 注册
       await userRegisterUsingPost({
@@ -74,9 +63,9 @@ const UserRegisterPage: React.FC = () => {
             minWidth: 280,
             maxWidth: '75vw',
           }}
-          logo={<img alt="logo" style={{ height: '100%' }} src="/logo.svg" />}
-          title="鱼厂招聘系统 - 注册"
-          subTitle={'高效招聘、爽快求职'}
+          logo={<img alt="logo" style={{ height: '100%' }} src="/logo.png" />}
+          title="鱼籽代码生成"
+          subTitle={'代码生成器在线制作共享，大幅提升开发效率'}
           initialValues={{
             autoLogin: true,
           }}
@@ -136,7 +125,7 @@ const UserRegisterPage: React.FC = () => {
                   size: 'large',
                   prefix: <LockOutlined />,
                 }}
-                placeholder={'请再次确认密码'}
+                placeholder={'请输入确认密码'}
                 rules={[
                   {
                     required: true,

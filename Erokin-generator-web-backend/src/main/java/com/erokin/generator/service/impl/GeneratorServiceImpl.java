@@ -101,20 +101,7 @@ public class GeneratorServiceImpl extends ServiceImpl<GeneratorMapper, Generator
         String sortOrder = generatorQueryRequest.getSortOrder();
 
 
-        // 拼接查询条件
-        if (StringUtils.isNotBlank(searchText)) {
-            queryWrapper.and(qw -> qw.like("title", searchText).or().like("content", searchText));
-        }
-        queryWrapper.like(StringUtils.isNotBlank(name), "title", name);
-        queryWrapper.like(StringUtils.isNotBlank(description), "content", description);
-        if (CollUtil.isNotEmpty(tags)) {
-            for (String tag : tags) {
-                queryWrapper.like("tags", "\"" + tag + "\"");
-            }
-        }
-        queryWrapper.ne(ObjectUtils.isNotEmpty(notId), "id", notId);
-        queryWrapper.eq(ObjectUtils.isNotEmpty(id), "id", id);
-        queryWrapper.eq(ObjectUtils.isNotEmpty(userId), "userId", userId);
+        // 拼接查询条件        if (StringUtils.isNotBlank(searchText)) {            queryWrapper.and(qw -> qw.like("name", searchText).or().like("description", searchText));        }        queryWrapper.like(StringUtils.isNotBlank(name), "name", name);        queryWrapper.like(StringUtils.isNotBlank(description), "description", description);        if (CollUtil.isNotEmpty(tags)) {            for (String tag : tags) {                queryWrapper.like("tags", """ + tag + """);            }        }        if (ObjectUtils.isNotEmpty(notId)) {            queryWrapper.ne("id", notId);        }        if (ObjectUtils.isNotEmpty(id)) {            queryWrapper.eq("id", id);        }        if (ObjectUtils.isNotEmpty(userId)) {            queryWrapper.eq("userId", userId);        }
 
         queryWrapper.eq(StringUtils.isNotBlank(basePackage), "basePackage", basePackage);
         queryWrapper.eq(StringUtils.isNotBlank(version), "version", version);

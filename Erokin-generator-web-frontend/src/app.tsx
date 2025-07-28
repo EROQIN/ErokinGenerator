@@ -1,3 +1,4 @@
+import logo from '@/assets/logo.png';
 import Footer from '@/components/Footer';
 import { getLoginUserUsingGet } from '@/services/backend/userController';
 import type { RunTimeLayoutConfig } from '@umijs/max';
@@ -40,6 +41,7 @@ export async function getInitialState(): Promise<InitialState> {
 // @ts-ignore
 export const layout: RunTimeLayoutConfig = ({ initialState }) => {
   return {
+    logo,
     avatarProps: {
       render: () => {
         return <AvatarDropdown />;
