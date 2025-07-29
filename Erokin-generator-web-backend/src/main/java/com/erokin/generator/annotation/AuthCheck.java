@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 权限校验
  *
- * @author <a href="https://github.com/lierokin">程序员鱼皮</a>
+ * @author <a href="https://github.com/lierokin">Erokin</a>
  * @from <a href="https://erokin.icu">编程导航知识星球</a>
  */
 @Target(ElementType.METHOD)
