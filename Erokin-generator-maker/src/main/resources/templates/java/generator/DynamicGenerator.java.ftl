@@ -43,10 +43,12 @@ public class DynamicGenerator {
         if (!FileUtil.exist(outputPath)) {
             FileUtil.touch(outputPath);
         }
-
+<#--        System.out.println("model" + model);-->
         // 生成
         Writer out = new FileWriter(outputPath);
+
         template.process(model, out);
+
 
         // 生成文件后别忘了关闭哦
         out.close();

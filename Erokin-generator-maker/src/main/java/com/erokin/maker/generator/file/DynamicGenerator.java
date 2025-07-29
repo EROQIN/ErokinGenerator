@@ -27,11 +27,34 @@ public class DynamicGenerator {
         cfg.setNumberFormat("0.######");  // now it will print 1000000
         // 模板文件所在的目录
         File templateDir = new File(inputPath).getParentFile();
+        
+        // 检查目录是否存在，如果不存在则尝试多种策略查找
+        if (!templateDir.exists()) {
+            // 策略1: 尝试在 resources 目录下查找模板
+            String resourcePath = "src/main/resources" + File.separator + 
+                                 new File(inputPath).getParent();
+            File resourceDir = new File(resourcePath);
+            if (resourceDir.exists()) {
+                templateDir = resourceDir;
+            } else {
+                // 策略2: 尝试在 classpath 中查找
+                String classpathResource = "/" + new File(inputPath).getParent();
+                // 如果是模板路径，应该在 resources/templates 下
+                if (classpathResource.contains("/templates/")) {
+                    String relativePath = classpathResource.substring(classpathResource.indexOf("/templates/") + 1);
+                    File actualTemplateDir = new File("src/main/resources", relativePath);
+                    if (actualTemplateDir.exists()) {
+                        templateDir = actualTemplateDir;
+                    }
+                }
+            }
+        }
 
         try {
             cfg.setDirectoryForTemplateLoading(templateDir);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("无法加载模板目录: " + templateDir.getAbsolutePath() + 
+                                     ", 原始路径: " + inputPath, e);
         }
 
         //字符集设置

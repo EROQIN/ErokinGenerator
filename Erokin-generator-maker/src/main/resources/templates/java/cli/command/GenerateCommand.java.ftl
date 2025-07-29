@@ -19,7 +19,7 @@ ${indent}private ${modelInfo.type} ${modelInfo.fieldName}<#if modelInfo.defaultV
 <#macro generateCommand indent modelInfo>
     ${indent}System.out.println("输入${modelInfo.groupName}配置：");
     ${indent}CommandLine ${modelInfo.groupKey}CommandLine = new CommandLine(${modelInfo.type}Command.class);
-    ${indent}${modelInfo.groupKey}CommandLine.execute(${modelInfo.allArgsStr});
+    ${indent}${modelInfo.groupKey}CommandLine.execute(<#if modelInfo.allArgsStr??>${modelInfo.allArgsStr}<#else>""</#if>);
 </#macro>
 
 

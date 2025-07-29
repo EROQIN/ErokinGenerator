@@ -2,7 +2,7 @@
     "name": "springboot-init-generator",
     "description": "Spring Boot 模板项目生成器",
     "fileConfig": {
-        "sourceRootPath": "D:/develop/Erokin-generator/Erokin-generator-maker/.temp/1/springboot-init",
+        "sourceRootPath": "/Users/erokin/develop/Erokin-generator/Erokin-generator-maker/.temp/1/springboot-init",
         "files": [
             {
                 "type": "group",

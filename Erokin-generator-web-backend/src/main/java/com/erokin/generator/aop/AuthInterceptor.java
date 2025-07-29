@@ -32,13 +32,15 @@ public class AuthInterceptor {
     /**
      * 执行拦截
      *
+     *
      * @param joinPoint
      * @param authCheck
-     * @return
+     * @return Object result;
      */
     @Around("@annotation(authCheck)")
     public Object doInterceptor(ProceedingJoinPoint joinPoint, AuthCheck authCheck) throws Throwable {
         String mustRole = authCheck.mustRole();
+
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
         // 当前登录用户

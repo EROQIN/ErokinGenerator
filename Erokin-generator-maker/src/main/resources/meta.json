@@ -8,7 +8,7 @@
   "fileConfig": {
     "inputRootPath": ".source/acm-template-pro",
     "outputRootPath": "generated",
-    "sourceRootPath": "D://develop/Erokin-generator/Erokin-generator-demo-projects/acm-template-pro",
+    "sourceRootPath": "/Users/erokin/develop/Erokin-generator/Erokin-generator-demo-projects/acm-template-pro",
     "type": "dir",
     "files": [
       {
