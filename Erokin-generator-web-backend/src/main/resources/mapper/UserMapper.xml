@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- @author <a href="https://github.com/EROQIN">Erokin</a> -->
-<!--    -->
+<!-- @author <a href="https://github.com/lierokin">程序员鱼皮</a> -->
+<!-- @from <a href="https://erokin.icu">编程导航知识星球</a> -->
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.erokin.generator.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.erokin.generator.model.entity.User">
+<mapper namespace="com.erokin.web.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.erokin.web.model.entity.User">
         <id property="id" column="id" jdbcType="BIGINT"/>
         <result property="userName" column="userName" jdbcType="VARCHAR"/>
         <result property="userAvatar" column="userAvatar" jdbcType="VARCHAR"/>
@@ -17,7 +17,8 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-        id,
+        id
+        ,
         userName,userAvatar,userProfile,
         userRole,createTime,updateTime,isDelete
     </sql>

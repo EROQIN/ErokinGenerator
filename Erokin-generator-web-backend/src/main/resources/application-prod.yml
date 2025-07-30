@@ -1,5 +1,6 @@
 # 线上配置文件
-# @author <a href="https://github.com/EROQIN">Erokin</a>
+# @author <a href="https://github.com/lierokin">程序员鱼皮</a>
+# @from <a href="https://erokin.icu">编程导航知识星球</a>
 server:
   port: 8101
 spring:
@@ -9,7 +10,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/my_db
     username: root
-    password: 2636888165
+    password: 123456
   # Redis 配置
   # todo 需替换配置
   redis:
@@ -17,12 +18,6 @@ spring:
     host: localhost
     port: 6379
     timeout: 5000
-    password: 123456
-  # Elasticsearch 配置
-  # todo 需替换配置
-  elasticsearch:
-    uris: http://localhost:9200
-    username: root
     password: 123456
 mybatis-plus:
   configuration:

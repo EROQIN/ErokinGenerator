@@ -10,10 +10,9 @@ import com.erokin.generator.model.vo.GeneratorVO;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * 帖子服务
- *
  * @author <a href="https://github.com/EROQIN">Erokin</a>
- *   
+ * @description 针对表【generator(代码生成器)】的数据库操作Service
+ * @createDate 2024-02-28 20:58:33
  */
 public interface GeneratorService extends IService<Generator> {
 
@@ -33,6 +32,7 @@ public interface GeneratorService extends IService<Generator> {
      */
     QueryWrapper<Generator> getQueryWrapper(GeneratorQueryRequest generatorQueryRequest);
 
+
     /**
      * 获取帖子封装
      *
@@ -50,4 +50,21 @@ public interface GeneratorService extends IService<Generator> {
      * @return
      */
     Page<GeneratorVO> getGeneratorVOPage(Page<Generator> generatorPage, HttpServletRequest request);
+
+    /**
+     * 缓存生成器
+     *
+     * @param id
+     */
+    void cacheGenerator(long id);
+
+    /**
+     * 获取缓存文件路径
+     *
+     * @param id
+     * @param distPath
+     * @return
+     */
+    String getCacheFilePath(long id, String distPath);
 }
+
